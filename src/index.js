@@ -88,6 +88,10 @@ class Calculator extends React.Component {
   }
 
   handleDecimal = () => {
+    // TODO: Diagnose and fix decimal bugs
+    // > issue when using an operator directly before using the decimal
+    // > probably some other bits too
+
     if (this.state.operator === "=") {
       this.setState(prevState => ({val:"0"}));
     }
@@ -115,8 +119,6 @@ class Calculator extends React.Component {
         operator: "=",
       });
     }
-
-    
   }
 
   render() {
