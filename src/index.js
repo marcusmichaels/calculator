@@ -40,9 +40,13 @@ class Calculator extends React.Component {
       });
     }
 
-    if ((activeDigit === "0" && this.state.val === "0") || this.state.val.length > 9) {
+    if ((activeDigit.toString() === "0" && this.state.val.toString() === "0") || this.state.val.length > 9) {
+      this.setState({
+        val:"0"
+      });
       return;
     } else if (this.state.val === "0") {
+
       this.setState({
         val: activeDigit
       })
@@ -111,7 +115,7 @@ class Calculator extends React.Component {
 
       let total = Math.round(100000000 * eval(`${this.state.equation} ${this.state.val}`)) / 100000000;
 
-      console.log(total);
+      // console.log(total);
 
       this.setState({
         val: total,
