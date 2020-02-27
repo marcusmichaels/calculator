@@ -1,0 +1,120 @@
+// neomorphist shades
+$base-color: #E0E5EC;
+$light-shade: lighten($base-color, 6%);
+$mid-shade: darken($base-color, 1%);
+$dark-shade: darken($base-color, 25%);
+
+$numbers: darken($base-color, 60%);
+
+html {
+  @media (min-width:35rem) {
+    font-size: 18px;
+  }
+}
+html,
+body {
+  height: 100%;
+  margin:0;
+  padding:0;
+  font-family: monospace;
+  background-color: $base-color;
+  
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 300px;
+}
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 20rem;
+}
+
+.calculator {
+  width:100%;
+
+  &_button,
+  &_screen {
+    color: $numbers;
+    background-color:$base-color;
+
+    border-radius: 10rem;
+
+
+    -webkit-box-shadow: -2px -2px 8px 3px $light-shade, 2px 2px 8px 2px $dark-shade;
+    box-shadow: -2px -2px 8px 3px $light-shade, 2px 2px 8px 2px $dark-shade;
+  }
+
+  &_screen {
+    // width: 19.2rem;
+    width: 100%;
+    margin:auto;
+    text-align: right;
+    padding:0.4rem 0.6rem;
+
+    margin-bottom:1rem;
+    font-size: 3rem;
+    border-radius: 1.2rem;
+  }
+
+  &_button {
+    width: 4.2rem;
+    height: 4.2rem;
+    margin:0.4rem;
+    padding:0;
+    font-size: 1.2rem;
+    border:none;
+    outline:0;
+    overflow: hidden;
+    cursor: pointer;
+
+    user-select: none;
+
+    -webkit-transition: 100ms box-shadow, 100ms transform;
+    transition: 100ms box-shadow, 100ms transform;
+
+    &:focus,
+    &:hover {
+      background-color: $mid-shade;
+    }
+
+    &.pressed {
+      background-color: $mid-shade;
+
+      -webkit-transform: scale(0.95);
+      transform: scale(0.95);
+
+      -webkit-box-shadow: -1px -1px 4px 1px $light-shade, 1px 1px 4px 1px $dark-shade;
+      box-shadow: -1px -1px 4px 1px $light-shade, 1px 1px 4px 1px $dark-shade;
+    }
+
+    &.triple {
+      width:14.2rem;
+    }
+    
+    &.double {
+      width:9.2rem;
+    }
+
+    &.operator {
+      color:rgb(241, 177, 0);
+    }
+
+    &.equals {
+      color: rgb(255, 145, 0);
+    }
+
+    &.clear {
+      color:white;
+      color: rgb(185, 0, 0);
+    }
+  }
+
+}
