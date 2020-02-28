@@ -21,6 +21,10 @@ class Calculator extends React.Component {
   handleDigit = (e) => {
     let activeDigit = e.target.value;
 
+    if (this.state.val.length > 10 && this.state.operator === "") {
+      return;
+    }
+
     if (this.state.operator === "=") {
       this.setState({
         val:"",
@@ -40,13 +44,14 @@ class Calculator extends React.Component {
       });
     }
 
-    if ((activeDigit.toString() === "0" && this.state.val.toString() === "0") || this.state.val.length > 9) {
+    if ((activeDigit.toString() === "0" && this.state.val.toString() === "0")) {
       this.setState({
         val:"0"
       });
       return;
-    } else if (this.state.val === "0") {
-
+    }
+    
+    if (this.state.val === "0") {
       this.setState({
         val: activeDigit
       })
@@ -113,7 +118,15 @@ class Calculator extends React.Component {
         prevOp: this.state.operator.indexOf("=") !== -1 ? this.state.operator : this.state.prevOp
       });
 
-      let total = Math.round(100000000 * eval(`${this.state.equation} ${this.state.val}`)) / 100000000;
+      let total = Math.round(1000000000 * eval(`${this.state.equation} ${this.state.val}`)) / 1000000000;
+
+      if (total.toString().length > 11) {
+        if (total.toFixed(4).length > 11) {
+          total = total.toExponential(5);
+        } else {
+          total = total.toFixed(4);
+        }
+      }
 
       // console.log(total);
 
