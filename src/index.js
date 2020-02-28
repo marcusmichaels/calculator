@@ -19,7 +19,7 @@ class Calculator extends React.Component {
   }
 
   handleDigit = (e) => {
-    let activeDigit = e.target.value;
+    let activeDigit = e !== "." ? e.target.value : "0.";
 
     if (this.state.val.length > 10 && this.state.operator === "") {
       return;
@@ -97,16 +97,21 @@ class Calculator extends React.Component {
   }
 
   handleDecimal = () => {
-    // TODO: Diagnose and fix decimal bugs
-    // > issue when using an operator directly before using the decimal
-    // > probably some other bits too
 
-    if (this.state.operator === "=") {
-      this.setState(prevState => ({val:"0"}));
+    if (this.state.operator !== "=" && this.state.operator !== "") {
+      this.handleDigit(".");
+    } else {
+
+      if (this.state.operator === "=") {
+        this.setState(prevState => ({
+          val:"0.",
+          operator:""
+        }));
+      } else if (this.state.val.toString().indexOf(".") === -1) {
+        this.setState(prevState => ({val: prevState.val + "."}));
+      }
     }
-    if (this.state.val.toString().indexOf(".") === -1) {
-      this.setState(prevState => ({val: prevState.val + "."}));
-    }
+
   }
 
   handleTotal = () => {
