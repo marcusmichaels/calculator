@@ -1,7 +1,7 @@
 # react-calc
-React calculator project
+Calculator project built with ReactJS
 
 I've played with a bit of neomorphism for the design of the calculator. 
 
 ### Need to do some calculations?
-You're in luck. [You can do sum here.](https://marcusmichaels.github.io/react-calc)
+You're in luck. [You can do sum here.](https://marcusmichaels.github.io/calculator)
